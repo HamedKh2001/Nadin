@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  nadin.webapi:
+    image: ${DOCKER_REGISTRY-}nadinwebapi
+    build:
+      context: .
+      dockerfile: src/Nadin.WebAPI/Dockerfile
+
+  redisdb:
+    image: redis:alpine
+
+  nadindatabase:
+    image: mcr.microsoft.com/mssql/server:2022-CU3-ubuntu-20.04
