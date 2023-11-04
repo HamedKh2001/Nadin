@@ -19,11 +19,18 @@ namespace Nadin.Application.Features.ProductFeature.Commands.CreateProduct
 
             RuleFor(p => p)
                 .MustAsync(BeValidProduct).WithMessage("Email OR ProductDate Exists");
+
+            RuleFor(p => p.Phone).Must(BeValidPhone).WithMessage("PhoneNumber Is Not Valid");
         }
 
         private bool BeValidEmail(string email)
         {
             return Regex.IsMatch(email, "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        }
+
+        private bool BeValidPhone(string email)
+        {
+            return Regex.IsMatch(email, "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$");
         }
 
         private async Task<bool> BeValidProduct(CreateProductCommand command, CancellationToken cancellationToken)

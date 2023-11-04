@@ -28,11 +28,18 @@ namespace Nadin.Application.Features.ProductFeature.Commands.UpdateProduct
                 .NotNull().NotEmpty().GreaterThan(0).WithMessage("{Id} is required.");
 
             RuleFor(p => p).MustAsync(HasAccess).WithMessage("User Has Not Permission For This Item");
+
+            RuleFor(p => p.Phone).Must(BeValidPhone).WithMessage("PhoneNumber Is Not Valid");
         }
 
         private bool BeValidEmail(string email)
         {
             return Regex.IsMatch(email, "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$\r\n");
+        }
+
+        private bool BeValidPhone(string email)
+        {
+            return Regex.IsMatch(email, "^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$");
         }
 
         private async Task<bool> BeValidProduct(UpdateProductCommand command, CancellationToken cancellationToken)
