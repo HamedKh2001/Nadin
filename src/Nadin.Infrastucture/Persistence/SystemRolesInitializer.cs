@@ -10,6 +10,7 @@ namespace Nadin.Infrastucture.Persistence
             #region Admins
             
             new Role{ Title ="Admins", DisplayTitle ="کاربران", Discriminator = "Menu"},
+            new Role{ Title ="SSO-Admin", DisplayTitle ="ویرایش دسترسی کاربر به گروه", Discriminator = "Admins"},
 
             #endregion
 
