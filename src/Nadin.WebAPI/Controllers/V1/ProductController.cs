@@ -55,5 +55,20 @@ namespace Nadin.WebAPI.Controllers.V1
             await Mediator.Send(command, cancellationToken);
             return NoContent();
         }
+
+        [HttpGet("ABAC")]
+        [Authorize]
+        [Authorize(Policy = "GenderPolicy")]
+        public IActionResult ABAC()
+        {
+            return Ok();
+        }
+
+        [HttpGet("CBAC")]
+        [Authorize(Policy = "IPAccessControlPolicy")]
+        public IActionResult CBAC()
+        {
+            return Ok();
+        }
     }
 }

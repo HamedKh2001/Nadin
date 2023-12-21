@@ -205,6 +205,7 @@ namespace Nadin.Infrastucture.Services
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.Surname, user.LastName??""),
                 new Claim(ClaimTypes.GivenName, user.FirstName??""),
+                new Claim(ClaimTypes.Gender, user.Gender.ToString()),
             };
         }
 
